@@ -38,7 +38,7 @@ with open(os.path.join(path, "wireshark_oui.txt"), "r") as file:
             continue
         data = search.findall(line)  # Find data fields
         mac_block = data[0]
-        if mac_block.startswith(args.MAC):  # Check MAC block
+        if mac_block.startswith(args.MAC) or args.MAC.startswith(mac_block):
             # vendor_short = data[1]
             vendor_long = " ".join(data[2:])
             print(f"[{mac_block}]: {vendor_long}")
