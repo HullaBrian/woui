@@ -9,6 +9,7 @@ def get_data():
     path = "/".join(os.path.realpath(__file__).split(os.sep)[:-1])
     url = "https://www.wireshark.org/download/automated/data/manuf"
     filename = os.path.join(path, "wireshark_oui.txt")
+    
     urlretrieve(url, filename)
 
 
@@ -29,6 +30,9 @@ if args.refresh:  # Refresh data if desired
     print("Refreshing MAC database from wireshark...", end="")
     get_data()
     print("Done!")
+
+# format MAC address
+args.MAC = args.MAC.replace("-", ":")
 
 path = "/".join(os.path.realpath(__file__).split(os.sep)[:-1])
 search = re.compile(r"([^\s]+)")
